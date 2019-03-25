@@ -90,3 +90,20 @@ app.get("/movies/:id", (request, response) => {
         response.send(result);
     });
 });
+
+app.post("/movies/:id", (request, response) => {
+    var review = request.body.review;
+    var date = request.body.date;
+
+    collection.update({"id": request.params.id},{ $set:
+      {
+        "review": review,
+        "date": date
+      }
+    },(error, result) => {
+        if(error) {
+            return response.status(500).send(error);
+        }
+        response.send(result);
+    } );
+});
