@@ -38,7 +38,7 @@ const queryType = new GraphQLObjectType({
             id: { type: GraphQLString },
           },
           resolve: async function(source,args) {
-            return fetch(http:'localhost:9292/movies/${args.id}')
+            return fetch('http://localhost:9292/movies/${args.id}')
             .then(res => res.json())
           }
         },
@@ -50,7 +50,7 @@ const queryType = new GraphQLObjectType({
             metascore: {type: GraphQLInt}
           },
           resolve: async function(source,args) {
-            const res = await fetch(http:'localhost:9292/movies/search?limit=${args.limit}&metascore=${args.metascore}')
+            const res = await fetch('http://localhost:9292/movies/search?limit=${args.limit}&metascore=${args.metascore}')
             const finalResult = await res.json();
             return finalResult.results;
           }
